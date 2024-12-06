@@ -1,0 +1,279 @@
+
+
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: const Color.fromARGB(255, 0, 60, 255),
+            child: Icon(icon, color: Colors.white),
+          ),
+
+          import 'package:flutter/material.dart';
+
+class SoundCloudHome extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor:
+          Color.fromARGB(255, 0, 0, 0), // Color de fondo basado en la imagen
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        elevation: 0,
+        title: Text('Inicio', style: TextStyle(fontWeight: FontWeight.bold)),
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: Text('GET PRO', style: TextStyle(color: Colors.orange)),
+          ),
+          IconButton(icon: Icon(Icons.cast), onPressed: () {}),
+          IconButton(icon: Icon(Icons.file_upload), onPressed: () {}),
+          IconButton(icon: Icon(Icons.email), onPressed: () {}),
+          IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Sección de favoritos
+            SectionTitle('Tus favoritos'),
+            FavoritesGrid(), // Cambiado a un grid layout
+            // Más música de la que te gusta
+            SectionTitle('Más música de la que te gusta'),
+            RelatedTracksList(), // Manteniendo el estilo previo
+            // Banner de SoundCloud Go
+            SoundCloudBanner(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavBar(),
+    );
+  }
+}
+
+class SectionTitle extends StatelessWidget {
+  final String title;
+  SectionTitle(this.title);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+}
+
+class FavoritesGrid extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(
+        8.0,
+      ),
+      child: GridView.count(
+        crossAxisCount: 2, // 2 columnas
+        crossAxisSpacing: 8.0,
+        mainAxisSpacing: 8.0,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        children: [
+          FavoriteCard('Post Malone', 'United States', Icons.verified),
+          FavoriteCard('Jazzy A', '---', Icons.verified),
+          FavoriteCard(
+              'Up The Stuss', 'Amsterdam, Netherlands', Icons.verified),
+          FavoriteCard('Chris Stussy', '---', Icons.music_note),
+        ],
+      ),
+    );
+  }
+}
+
+class FavoriteCard extends StatelessWidget {
+  final String name;
+  final String location;
+  final IconData icon;
+
+  FavoriteCard(this.name, this.location, this.icon);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 120, // Ancho fijo de 120
+      height: 30, // Alto fijo de 30
+      decoration: BoxDecoration(
+        color: Color.fromARGB(255, 0, 0, 0), // Fondo negro
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: const Color.fromARGB(255, 0, 60, 255),
+            child: Icon(icon, color: Colors.white),
+          ),
+          SizedBox(height: 10),
+          Text(
+            name,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 4),
+          Text(
+            location,
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 12,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class RelatedTracksList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          RelatedTrackCard(
+              'Taking my Time', 'Jazzy A, fixxyo, clipp.art, JAYC'),
+          RelatedTrackCard(
+              'rockstar - post ma...', 'LIV, L<3, O_Tal_Do_Otta, gaichi.'),
+          RelatedTrackCard(
+              'JID - surround sou...', 'Flowrics, sawcy_boy, King Magic'),
+        ],
+      ),
+    );
+  }
+}
+
+class RelatedTrackCard extends StatelessWidget {
+  final String title;
+  final String artists;
+
+  RelatedTrackCard(this.title, this.artists);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 160,
+      margin: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        color: Color(0xFF33363F),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            height: 100,
+            width: double.infinity,
+            color: Colors.grey,
+            child: Center(
+              child: Icon(Icons.music_note, size: 50, color: Colors.white),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: Colors.white,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  artists,
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SoundCloudBanner extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Color(0xFF33363F),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Olvídate de los anuncios con SoundCloud Go',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.white)),
+          SizedBox(height: 8),
+          Text('Despídete de los anuncios',
+              style: TextStyle(color: Colors.grey)),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+            child: Text('Comienza'),
+          ),
+          SizedBox(height: 8),
+          Text(
+              'Puedes cancelar en cualquier momento. Existen algunas limitaciones.',
+              style: TextStyle(color: Colors.grey, fontSize: 12)),
+        ],
+      ),
+    );
+  }
+}
+
+class BottomNavBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Color(0xFF20232A),
+      selectedItemColor: Colors.orange,
+      unselectedItemColor: Colors.grey,
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+        BottomNavigationBarItem(icon: Icon(Icons.stream), label: 'Canal'),
+        BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Buscar'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.library_music), label: 'Biblioteca'),
+        BottomNavigationBarItem(icon: Icon(Icons.upgrade), label: 'Upgrade'),
+      ],
+    );
+  }
+}

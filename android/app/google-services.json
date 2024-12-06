@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "276719021239",
+    "project_id": "soundcloud-b7963",
+    "storage_bucket": "soundcloud-b7963.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276719021239:android:a02cee3cbe9ab15c067132",
+        "android_client_info": {
+          "package_name": "com.example.music"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "276719021239-4vojnd8fjs6fes78dtscquvbkp1umdgi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.music",
+            "certificate_hash": "471ab7622caa3a7d3f4f7c94634df7f1c9850ae1"
+          }
+        },
+        {
+          "client_id": "276719021239-v1au0i7jrg90bg0qura110425k7ujksq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP8kYYgXsR8d0hHbQeKhV1WzHqiO4KQSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "276719021239-v1au0i7jrg90bg0qura110425k7ujksq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
